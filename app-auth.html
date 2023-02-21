@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr" >
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>template</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="style/auth-design.css">
+  <!-- Import and configure the Firebase SDK -->
+  <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+  <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+  
+  <script src="script/firebase/9.17.1/firebase-app-compat.js"></script>
+  <script src="script/firebase/9.17.1/firebase-analytics-compat.js"></script>
+  <script src="script/firebase/9.17.1/firebase-auth-compat.js"></script>
+  
+  <!-- Demarrage du firebase -->
+  <script src="script/firebase/init.js"></script>
+  
+  <!-- Fonction custom firebase pour le auth -->
+  <script src="script/auth.js"></script>
+
+</head>
+<body>
+
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Create Account</h1>
+			<span>or use your email for registration</span>
+			<input class="mdl-textfield__input" type="email" id="emailSignUp" name="email" placeholder="Email"/>
+			<input class="mdl-textfield__input" type="password" id="passwordSignUp" name="password" placeholder="Password"/>
+			<button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-up" name="signup">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="#">
+			<h1>Sign in</h1>
+			<span>or use your account</span>
+			<input class="mdl-textfield__input" type="email" id="email" name="email" placeholder="Email"/>
+			<input class="mdl-textfield__input" type="password" id="password" name="password" placeholder="Password"/>
+			<a href="#" id="quickstart-password-reset" name="verify-email">Forgot your password?</a>
+			<button disabled class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in" name="signin">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Container where we'll display the user details -->
+<div class="quickstart-user-details-container">
+    Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
+    <div>Firebase auth <code>currentUser</code> object value:</div>
+    <pre><code id="quickstart-account-details">null</code></pre>
+</div>
+
+<footer>
+	<p>
+		Created with <i class="fa fa-heart"></i> by me
+	</p>
+</footer>
+<!-- partial -->
+  <script  src="script/auth-design.js"></script>
+
+</body>
+</html>
