@@ -129,14 +129,26 @@ function affichageProcessFonction(listeProcess,processKey) {
 									<div class="card-body">
 										<div class="row featurette">
 										  <div class="col-md-10 order-md-2">
-											<div class="p-3 mb-2 bg-warning text-white">
-												Element à vérifier
+											<div class="p-3 mb-2 bg-secondary  text-white">
+												Ligne : `
+												
+												var listeProcessVirgule="";
+												listeProcess.listeEquipement.forEach(function (snapshot) {
+													   template +=listeProcessVirgule+snapshot;
+													   listeProcessVirgule=", ";
+												});
+												template +=` | Equipement : `;
+												
+												var listeLigneVirgule="";
+												listeProcess.listeLigne.forEach(function (snapshot) {
+													   template +=listeLigneVirgule+snapshot;
+													   listeLigneVirgule=", ";
+												});
+												
+												template +=` | durée : `+listeProcess.dureeProcess+`
 											</div>
-											<p class="font-italic">Crée par Christophe Pauly le 23/05/2023</p>
+											<p class="font-italic">Crée par Christophe Pauly le `+listeProcess.datecreation+`</p>
 											<p class="lead">`+listeProcess.description+`</p>
-										  </div>
-										  <div class="col-md-2 order-md-1">
-										     <img  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#eee"/></img>
 										  </div>
 										</div>
 									</div>

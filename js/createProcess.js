@@ -2,20 +2,20 @@ var processFocus = localStorage.getItem('ProcessFocus');
 
 //Initialisation des listes de selection
 $(document).ready(function() {
-    $('#listeSelectEpi').multiselect({
+    $('#listeSelectAction').multiselect({
           enableHTML: true
     });
 	
-	$('#listeSelectPicto').multiselect({
-          enableHTML: true
-    });
+	//$('#listeSelectPicto').multiselect({
+    //      enableHTML: true
+    //});
 	
 	updateAffichageEtapesFonction();
 });
 
 
-document.getElementById("listeSelectEpi").hidden = true;
-document.getElementById("listeSelectPicto").hidden = true;
+document.getElementById("listeSelectAction").hidden = true;
+//document.getElementById("listeSelectPicto").hidden = true;
 document.querySelector("#photoEtape").hidden = true;
 
 
@@ -61,8 +61,18 @@ function creerNouveauEtapeFonction() {
 function creerNouveauEtapeDataFonction(imageUrlEtape) {
   titreEtape =document.getElementById("TitreEtape").value;
   descriptionEtape  =document.getElementById("DescriptionEtape").value;;
-  listeEpi = $('#listeSelectEpi').val()
-  listePicto = $('#listeSelectPicto').val()
+  listeAction = $('#listeSelectAction').val()
+  //listePicto = $('#listeSelectPicto').val()
+  
+    var els = document.getElementsByClassName("imageListe selected");
+	listePicto=[];
+
+	Array.prototype.forEach.call(els, function(el) {
+		// Do stuff here
+		console.log(el.children[0].src);
+		listePicto.push(el.children[0].src);
+	});
+	console.log(listePicto);
   
   //Reception du nombre de valeurs
   firebase.database().ref('procedures/'+processFocus).once('value').then((snapshot) => {
@@ -83,7 +93,7 @@ function creerNouveauEtapeDataFonction(imageUrlEtape) {
 			titre: titreEtape,
 			description: descriptionEtape,
 			imageUrlEtape : imageUrlEtape,
-			listeEpi: listeEpi,
+			listeAction: listeAction,
 			listePicto: listePicto,
 			position: position,
 			datecreation:dateFormat()
@@ -114,12 +124,13 @@ function purgerAffichage(parent) {
     }
 }
 
+
 function affichageEtapesFonction(listeEtapes) {
 	console.log(listeEtapes.description)
 	var template = `
 						<!-- Area Chart -->
 							
-								<div class="card shadow mb-4 card border-left-primary">
+								<div class="sortable-item card shadow mb-4 card border-left-primary">
 									<!-- Card Header - Dropdown -->
 									<div
 										class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -145,8 +156,8 @@ function affichageEtapesFonction(listeEtapes) {
 									<div class="card-body">
 										<div class="row featurette">
 										  <div class="col-md-10 order-md-2">
-											<div class="p-3 mb-2 bg-warning text-white">
-												Element à vérifier
+											<div class="p-3 mb-2 bg-secondary  text-white">
+												`+listeEtapes.listeAction+`
 											</div>
 											<p class="font-italic">Crée par Christophe Pauly le 23/05/2023</p>
 											<p class="lead">`+listeEtapes.description+`</p>
